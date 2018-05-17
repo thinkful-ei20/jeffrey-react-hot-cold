@@ -11,10 +11,24 @@ export default class Game extends React.Component {
         this.state = {
             guesses: [],
             feedback: 'Make your guess!!',
-            //answer: Math.round(Math.random() * 100) + 1
-            answer: 99,
+            answer: Math.round(Math.random() * 100) + 1,
             showModal: false
         }
+    }
+
+    newGame() {
+        this.setState({
+            guesses: [],
+            feedback: 'Make your guess!!',
+            answer: Math.round(Math.random() * 100) + 1,
+            showModal: false
+        });
+    }
+
+    setShowModal(showModal) {
+        this.setState({
+            showModal
+        });
     }
 
     makeGuess(guess) {
@@ -54,7 +68,7 @@ export default class Game extends React.Component {
 
         return (
             <div>
-                <Header showModal={showModal} />
+                <Header onNewGame={() => this.newGame()} onShowModal={showModal => this.setShowModal(showModal)} showModal={showModal} />
                 <GuessSection feedback={feedback} onMakeGuess={guess => this.makeGuess(guess)} />
                 <GuessCount count={count} />
                 <GuessList guesses={guesses} />
