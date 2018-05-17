@@ -9,7 +9,7 @@ export default function Header(props) {
     return (
         <header>
             <TopNav />
-            {/* <InfoModal /> */}
+            <InfoModal showModal={props.showModal} />
             <h1>HOT or COLD</h1>
         </header>
     );
